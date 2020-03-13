@@ -31,8 +31,7 @@ def cityreader(cities=[]):
     # csv file name
     filename = "cities.csv"
 
-    # initializing the titles and rows list
-    fields = []
+    # initializing rows list
     rows = []
 
     # reading csv file
