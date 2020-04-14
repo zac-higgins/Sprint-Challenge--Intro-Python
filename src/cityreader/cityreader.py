@@ -55,7 +55,7 @@ cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
+    print(c.name, ", ", c.lat, ", ", c.lon)
 
 # STRETCH GOAL!
 #
@@ -92,9 +92,35 @@ for c in cities:
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # within will hold the cities that fall within the specified region
     within = []
+    # variables to hold the lat & lon of the lower left and upper right corners of the square
+    lower_left = {}
+    upper_right = {}
 
-    # TODO Ensure that the lat and lon valuse are all floats
-    # Go through each city and check to see if it falls within
-    # the specified coordinates.
+    # filters the inputs into the correct corners
+    if lat1 < lat2:
+        lower_left["lat"] = lat1
+        upper_right["lat"] = lat2
+    elif lat2 < lat1:
+        lower_left["lat"] = lat2
+        upper_right["lat"] = lat1
+    if lon1 < lon2:
+        lower_left["lon"] = lon1
+        upper_right["lon"] = lon2
+    elif lon2 < lon1:
+        lower_left["lon"] = lon2
+        upper_right["lon"] = lon1
+
+    # loops through given cities and filters for the cities that fall within the square
+    for city in cities:
+        if upper_right["lat"] > city.lat > lower_left["lat"] and upper_right["lon"] > city.lon > lower_left["lon"]:
+            # within.append(f"{city.name}: ({city.lat},{city.lon})")
+            within.append(city)
 
     return within
+
+# local test to see a human friendly print of the list of cities within the square
+# def test():
+#     for city in cityreader_stretch(45, -120, 32, -100, cities):
+#         print(city)
+
+# test()

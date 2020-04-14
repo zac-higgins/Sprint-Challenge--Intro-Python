@@ -5,9 +5,9 @@
 
 
 class GroundVehicle():
-    def __init__(self):
+    def __init__(self, sound="vroooom"):
         self.num_wheels = 4
-        self.sound = "vroooom"
+        self.sound = sound
 
     def drive(self):
         return self.sound
@@ -22,9 +22,8 @@ class GroundVehicle():
 
 class Motorcycle(GroundVehicle):
     def __init__(self):
-        super().__init__()
+        super().__init__("BRAAAP!!")
         self.num_wheels = 2
-        self.sound = "BRAAAP!!"
 
 
 vehicles = [
